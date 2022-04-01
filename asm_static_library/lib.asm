@@ -1,5 +1,5 @@
 SECTION .DATA
-	hello:    db 'hello ryan!',10 ; 10: line-feed
+	hello:    db 'hello friend!',10 ; 10: line-feed
 	helloLen: equ $-hello
 
 SECTION .TEXT
