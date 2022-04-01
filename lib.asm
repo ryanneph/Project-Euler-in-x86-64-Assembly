@@ -6,8 +6,8 @@ section .text
 
 
 ;; sum of all multiples of 3 or 5
-; edi < count (s32):  test all numbers in [0, count)
-; eax > sum   (s32)
+; edi < count (u32):  test all numbers in [0, count)
+; eax > sum   (u32)
 euler001__asm:
     ; i = 0
     xor  r9, r9
@@ -43,12 +43,13 @@ euler001__loop_inc:
     jb   euler001__loop
 
 euler001__loop_done:
-    ; return sum via rax
+    ; return sum
     mov  rax, r8
     ret
 
 
 ;; sum of even-valued terms in Fibonacci sequence
+; eax > sum (u32)
 euler002__asm:
     ; sum = 2 (u32)
     mov esi, 2
@@ -80,5 +81,6 @@ euler002__loop:
     jmp euler002__loop
 
 euler002__loop_done:
+    ; return sum
     mov eax, esi
     ret
