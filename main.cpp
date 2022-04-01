@@ -15,11 +15,18 @@ typedef int64_t  s64;
 // asm function definitions
 //
 extern "C" u32 euler001__asm(u32 count);
+extern "C" u32 euler002__asm(void);
 
 
 int main(int arg_count, char *args[]) {
-   // 001
-   u32 loop_count = 1000;
-   u32 result = euler001__asm(loop_count);
-   printf("001. sum of multiples of 3 and 5: %u\n", result);
+   { // 001
+      u32 loop_count = 1000;
+      u32 result = euler001__asm(loop_count);
+      printf("001. sum of multiples of 3 and 5: %u\n", result);
+   }
+
+   { // 002
+      u32 result = euler002__asm();
+      printf("002. sum of even-valued terms in Fibonacci sequence: %u\n", result);
+   }
 }
