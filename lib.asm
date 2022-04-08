@@ -13,14 +13,14 @@ euler001__asm:
     xor  r9, r9
     ; sum = 0
     xor  r8, r8
-euler001__loop:
+.loop:
     ; if (i % 3 == 0) { sum += 3 }
     xor  rdx, rdx ; clear dividend
     mov  rax, r9 ; dividend is i
     mov  rcx, 3   ; divisor  is 3
     div  rcx      ; i % 3 is stored to rdx
     test rdx, rdx ; set ZF if zero
-    jz   euler001__add_i
+    jz   .add_i
 
     ; if (i % 5 == 0) { sum += 5 }
     xor  rdx, rdx ; clear dividend
@@ -28,21 +28,21 @@ euler001__loop:
     mov  rcx, 5   ; divisor  is 3
     div  rcx      ; i % 5 is stored to rdx
     test rdx, rdx ; set ZF if zero
-    jz   euler001__add_i
+    jz   .add_i
 
-    jmp  euler001__loop_inc
+    jmp  .loop_inc
 
 ; sum += i
-euler001__add_i:
+.add_i:
     add  r8, r9
 
-euler001__loop_inc:
+.loop_inc:
     inc  r9 ; i++
     ; i < n
     cmp  r9, rdi
-    jb   euler001__loop
+    jb   .loop
 
-euler001__loop_done:
+.loop_done:
     ; return sum
     mov  rax, r8
     ret
@@ -59,7 +59,7 @@ euler002__asm:
     mov edx, 2
 
     ; while (fib[i] < 4_000_000)
-euler002__loop:
+.loop:
     ; fib[i] = fib[i-1] + fib[i-2])
     mov r8d, ecx
     add r8d, edx
@@ -70,17 +70,17 @@ euler002__loop:
 
     ; if (fib[i] >= 4M) break
     cmp r8d, 4000000
-    ja euler002__loop_done
+    ja .loop_done
 
     ; if fib[i] is even (lowest bit set)
     ;   sum += fib[i]
     test r8b, 1
-    jnz euler002__loop
+    jnz .loop
     add esi, r8d
 
-    jmp euler002__loop
+    jmp .loop
 
-euler002__loop_done:
+.loop_done:
     ; return sum
     mov eax, esi
     ret
